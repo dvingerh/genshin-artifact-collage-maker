@@ -1,4 +1,4 @@
-# 📷 GI Artifact Capture
+# 📷 Genshin Impact Artifact Capture
 This tool allows you to quickly make an image collage of a character's artifact set in Genshin Impact.
 
 - Quickly generate an artifact set image collage
