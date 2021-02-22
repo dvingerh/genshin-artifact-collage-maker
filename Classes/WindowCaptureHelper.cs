@@ -28,14 +28,21 @@ namespace gi_artifact_capture
 
         public static Bitmap ProcessWindowScreenshot(IntPtr mainHandle)
         {
-            Rectangle genshinWindow = GetWindowClientRectangle(mainHandle);
-            var bitmap = new Bitmap(genshinWindow.Width, genshinWindow.Height, PixelFormat.Format32bppArgb);
-            using (var g = Graphics.FromImage(bitmap))
+            try
             {
-                g.InterpolationMode = InterpolationMode.High;
-                g.CopyFromScreen(genshinWindow.Location, Point.Empty, genshinWindow.Size, CopyPixelOperation.SourceCopy);
-                return bitmap;
-            };
+                Rectangle genshinWindow = GetWindowClientRectangle(mainHandle);
+                var bitmap = new Bitmap(genshinWindow.Width, genshinWindow.Height, PixelFormat.Format32bppArgb);
+                using (var g = Graphics.FromImage(bitmap))
+                {
+                    g.InterpolationMode = InterpolationMode.High;
+                    g.CopyFromScreen(genshinWindow.Location, Point.Empty, genshinWindow.Size, CopyPixelOperation.SourceCopy);
+                    return bitmap;
+                };
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public static Rectangle GetWindowClientRectangle(IntPtr handle)

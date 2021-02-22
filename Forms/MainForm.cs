@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace gi_artifact_capture
 {
     public partial class MainForm : Form
     {
-        string saveFileName;
+        string savePrefix;
         Process genshinProc;
         IntPtr genshinHandle;
 
@@ -46,47 +47,88 @@ namespace gi_artifact_capture
 
         private async Task DoCaptureGameScreen()
         {
-            Bitmap gameScreenshot;
-            Bitmap croppedGameScreenshot;
-            for(int progressIndex = 0; progressIndex <= 4; progressIndex++)
+            Bitmap gameScreenshot = null;
+            Bitmap croppedGameScreenshot = null;
+            for (int progressIndex = 0; progressIndex <= 4; progressIndex++)
             {
                 await Task.Delay((int)TimeOutUpDown.Value);
                 gameScreenshot = WindowCaptureHelper.ProcessWindowScreenshot(genshinHandle);
-                int gameScreenWidth = gameScreenshot.Width;
-                int cropWidth = Convert.ToInt32(0.275 * gameScreenshot.Width);
-                int cropHeight = Convert.ToInt32(0.90 * gameScreenshot.Height);
-                int offsetWidth = gameScreenWidth - cropWidth;
+                if (gameScreenshot == null)
+                {
+                    Invoke((MethodInvoker)delegate
+                    {
+                        Activate();
+                        MessageBox.Show("Could not capture the game window. Ensure it's not minimalized or unfocused and try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    });
+                    progressIndex = -1;
+                }
+                else
+                {
+                    int gameScreenWidth = gameScreenshot.Width;
+                    int cropWidth = Convert.ToInt32(0.275 * gameScreenshot.Width);
+                    int cropHeight = Convert.ToInt32(0.90 * gameScreenshot.Height);
+                    int offsetWidth = gameScreenWidth - cropWidth;
 
-                croppedGameScreenshot = CropGameImage(gameScreenshot, cropWidth, cropHeight, offsetWidth);
+                    croppedGameScreenshot = CropGameImage(gameScreenshot, cropWidth, cropHeight, offsetWidth);
+                }
+
+                if (SaveInOwnDirectoryCheckBox.Checked)
+                    Directory.CreateDirectory(savePrefix);
 
                 switch (progressIndex)
                 {
                     case 0:
                         FlowerBitmap = croppedGameScreenshot;
                         if (SaveIndividualImagesCheckBox.Checked)
-                            croppedGameScreenshot.Save($"{saveFileName}_flower.png");
-                     break;
+                            if (SaveInOwnDirectoryCheckBox.Checked)
+                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_flower.png"));
+                            else
+                                croppedGameScreenshot.Save($"{savePrefix}_flower.png");
+                        break;
                     case 1:
                         PlumeBitmap = croppedGameScreenshot;
                         if (SaveIndividualImagesCheckBox.Checked)
-                            croppedGameScreenshot.Save($"{saveFileName}_plume.png");
+                            if (SaveInOwnDirectoryCheckBox.Checked)
+                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_plume.png"));
+                            else
+                                croppedGameScreenshot.Save($"{savePrefix}_plume.png");
                         break;
                     case 2:
                         SandsBitmap = croppedGameScreenshot;
                         if (SaveIndividualImagesCheckBox.Checked)
-                            croppedGameScreenshot.Save($"{saveFileName}_sands.png");
+                            if (SaveInOwnDirectoryCheckBox.Checked)
+                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_sands.png"));
+                            else
+                                croppedGameScreenshot.Save($"{savePrefix}_sands.png");
                         break;
                     case 3:
                         GobletBitmap = croppedGameScreenshot;
                         if (SaveIndividualImagesCheckBox.Checked)
-                            croppedGameScreenshot.Save($"{saveFileName}_goblet.png");
+                            if (SaveInOwnDirectoryCheckBox.Checked)
+                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_goblet.png"));
+                            else
+                                croppedGameScreenshot.Save($"{savePrefix}_goblet.png");
                         break;
                     case 4:
                         CircletBitmap = croppedGameScreenshot;
                         if (SaveIndividualImagesCheckBox.Checked)
-                            croppedGameScreenshot.Save($"{saveFileName}_circlet.png");
+                            if (SaveInOwnDirectoryCheckBox.Checked)
+                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_circlet.png"));
+                            else
+                                croppedGameScreenshot.Save($"{savePrefix}_circlet.png");
+                        break;
+                    default:
+                        Invoke((MethodInvoker)delegate
+                        {
+                            StartButton.Enabled = true;
+                            StartButton.Text = "Start";
+                            CaptureProgressBar.Value = 0;
+                        });
                         break;
                 }
+                if (progressIndex == -1)
+                    break;
+
                 Invoke((MethodInvoker)delegate
                 {
                     CaptureProgressBar.PerformStep();
@@ -102,19 +144,22 @@ namespace gi_artifact_capture
                         StartButton.Enabled = true;
                         StartButton.Text = "Start";
                     });
-                    Process.Start($"{saveFileName}.png");
+                    if (SaveInOwnDirectoryCheckBox.Checked)
+                        Process.Start(Path.Combine(savePrefix, $"{savePrefix}.png"));
+                    else
+                        Process.Start($"{savePrefix}.png");
                 }
             }
         }
 
         private void DoBeeps(bool last = false)
         {
-            Console.Beep(5000, 100);
-            Console.Beep(5000, 100);
+            Console.Beep(2000, 100);
+            Console.Beep(2000, 100);
             if (last)
             {
-                Console.Beep(5000, 100);
-                Console.Beep(5000, 100);
+                Console.Beep(2000, 100);
+                Console.Beep(2000, 100);
             }
         }
 
@@ -128,7 +173,7 @@ namespace gi_artifact_capture
             GobletBitmap = null;
             CircletBitmap = null;
             
-            saveFileName = $"artifacts_{DateTimeOffset.Now.ToUnixTimeSeconds()}";
+            savePrefix = $"artifacts_{DateTimeOffset.Now.ToUnixTimeSeconds()}";
             CaptureProgressBar.Value = 0;
             StartButton.Enabled = false;
             StartButton.Text = "Capturing...";
@@ -181,7 +226,7 @@ namespace gi_artifact_capture
             int newHeight = bmp.Height + (borderSize * 2);
 
             if (skipRightBorder)
-                newWidth -= 10;
+                newWidth -= borderSize;
 
             Bitmap newImage = new Bitmap(newWidth, newHeight);
             using (Graphics gfx = Graphics.FromImage(newImage))
@@ -229,7 +274,10 @@ namespace gi_artifact_capture
                 CircletBitmap
             };
             Bitmap collageImage = MergeArtifactImages(artifactImages);
-            collageImage.Save($"{saveFileName}.png");
+            if (SaveInOwnDirectoryCheckBox.Checked)
+                collageImage.Save(Path.Combine(savePrefix, $"{savePrefix}.png"));
+            else
+                collageImage.Save($"{savePrefix}.png");
         }
     }
 }
