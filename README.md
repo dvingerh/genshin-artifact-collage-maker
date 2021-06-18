@@ -8,8 +8,6 @@ This tool allows you to quickly make an image collage of a character's artifact 
 
 ### How to use
 
-[Click here for a short video demonstration](https://www.youtube.com/watch?v=HJoQCnyJl6U)
-
 1. Open the tool and select your preferred settings.
 2. Ensure the game is running and you're viewing the leftmost artifact slot on the Artifacts screen.
 3. Click `Start`, the game window will now be shown.
