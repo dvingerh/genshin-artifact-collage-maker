@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace gi_artifact_capture
+namespace genshin_impact_artifact_collage_maker
 {
     static class Program
     {

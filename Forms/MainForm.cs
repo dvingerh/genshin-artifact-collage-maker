@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace gi_artifact_capture
+namespace genshin_impact_artifact_collage_maker
 {
     public partial class MainForm : Form
     {
@@ -203,7 +203,7 @@ namespace gi_artifact_capture
             return croppedImage;
         }
 
-        private void OpenSaveLocationButtonClick(object sender, EventArgs e)
+        private void OpenOutputDirectory(object sender, EventArgs e)
         {
             Process.Start(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location));
         }

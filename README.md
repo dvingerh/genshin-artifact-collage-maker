@@ -1,4 +1,4 @@
-# 📷 Genshin Impact Artifact Capture
+# 📷 Genshin Impact Artifact Collage Maker
 This tool allows you to quickly make an image collage of a character's artifact set in Genshin Impact.
 
 - Quickly generate an artifact set image collage
@@ -8,7 +8,7 @@ This tool allows you to quickly make an image collage of a character's artifact 
 
 ### How to use
 
-1. Open the tool and select your preferred settings.
+1. Open the program and select your preferred settings.
 2. Ensure the game is running and you're viewing the leftmost artifact slot on the Artifacts screen.
 3. Click `Start`, the game window will now be shown.
 4. When a screenshot is taken, two audio beeps will play. After every two beeps, select the next artifact slot.
@@ -18,11 +18,11 @@ This tool allows you to quickly make an image collage of a character's artifact 
 
 ### Example
 
-![Example](/example.png?raw=true "Example")
+![Example Program](example_program.png?raw=true "Example Program")
+
+![Example Output](example_output.png?raw=true "Example Output")
 
 
 ### Notes
 
-While the tool supports different game resolutions the best results are achieved at 1080p or higher.
-    
-There are still a few bugs and there is only a scarce amount of error handling implemented. Feel free to report any issues you run into.
+While the program supports different game resolutions the best results are achieved at 1080p or higher.

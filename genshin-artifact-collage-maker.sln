@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gi-artifact-capture", "gi-artifact-capture.csproj", "{09877FF6-1F03-48FA-84FF-05CF97F7CDD6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "genshin-artifact-collage-maker", "genshin-artifact-collage-maker.csproj", "{09877FF6-1F03-48FA-84FF-05CF97F7CDD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
