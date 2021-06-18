@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace genshin_impact_artifact_collage_maker
+namespace genshin_artifact_collage_maker
 {
     public partial class MainForm : Form
     {

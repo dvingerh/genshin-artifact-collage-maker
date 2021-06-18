@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{09877FF6-1F03-48FA-84FF-05CF97F7CDD6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>genshin_impact_artifact_collage_maker</RootNamespace>
-    <AssemblyName>genshin-impact-artifact-collage-maker</AssemblyName>
+    <RootNamespace>genshin_artifact_collage_maker</RootNamespace>
+    <AssemblyName>genshin-artifact-collage-maker</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

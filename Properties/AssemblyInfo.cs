@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("genshin-impact-artifact-collage-maker")]
+[assembly: AssemblyTitle("genshin-artifact-collage-maker")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("genshin-impact-artifact-collage-maker")]
+[assembly: AssemblyProduct("genshin-artifact-collage-maker")]
 [assembly: AssemblyCopyright("Copyright © Dirk Vingerhoeds 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace genshin_impact_artifact_collage_maker.Properties {
+namespace genshin_artifact_collage_maker.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace genshin_impact_artifact_collage_maker.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("genshin_impact_artifact_collage_maker.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("genshin_artifact_collage_maker.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -5,7 +5,7 @@ using System.Drawing.Imaging;
 using System.Security.Permissions;
 using System.Drawing.Drawing2D;
 
-namespace genshin_impact_artifact_collage_maker
+namespace genshin_artifact_collage_maker
 {
     // Taken and modified from https://stackoverflow.com/a/53252044
     public class WindowCaptureHelper

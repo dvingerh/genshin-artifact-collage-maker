@@ -1,5 +1,5 @@
 ﻿
-namespace genshin_impact_artifact_collage_maker
+namespace genshin_artifact_collage_maker
 {
     partial class MainForm
     {
