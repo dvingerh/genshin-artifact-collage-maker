@@ -38,16 +38,16 @@ namespace gi_artifact_capture
             this.TimeOutUpDown = new System.Windows.Forms.NumericUpDown();
             this.TimeOutLabel = new System.Windows.Forms.Label();
             this.SaveInOwnDirectoryCheckBox = new System.Windows.Forms.CheckBox();
+            this.OpenSaveLocationButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.TimeOutUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // StartButton
             // 
             this.StartButton.Enabled = false;
-            this.StartButton.Location = new System.Drawing.Point(12, 141);
-            this.StartButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.StartButton.Location = new System.Drawing.Point(10, 113);
             this.StartButton.Name = "StartButton";
-            this.StartButton.Size = new System.Drawing.Size(256, 29);
+            this.StartButton.Size = new System.Drawing.Size(212, 23);
             this.StartButton.TabIndex = 0;
             this.StartButton.Text = "Game not running";
             this.StartButton.UseVisualStyleBackColor = true;
@@ -55,10 +55,9 @@ namespace gi_artifact_capture
             // 
             // CaptureProgressBar
             // 
-            this.CaptureProgressBar.Location = new System.Drawing.Point(12, 113);
-            this.CaptureProgressBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CaptureProgressBar.Location = new System.Drawing.Point(10, 91);
             this.CaptureProgressBar.Name = "CaptureProgressBar";
-            this.CaptureProgressBar.Size = new System.Drawing.Size(256, 20);
+            this.CaptureProgressBar.Size = new System.Drawing.Size(212, 16);
             this.CaptureProgressBar.Step = 20;
             this.CaptureProgressBar.TabIndex = 1;
             // 
@@ -67,10 +66,10 @@ namespace gi_artifact_capture
             this.SaveIndividualImagesCheckBox.AutoSize = true;
             this.SaveIndividualImagesCheckBox.Checked = true;
             this.SaveIndividualImagesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.SaveIndividualImagesCheckBox.Location = new System.Drawing.Point(12, 11);
+            this.SaveIndividualImagesCheckBox.Location = new System.Drawing.Point(10, 9);
             this.SaveIndividualImagesCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.SaveIndividualImagesCheckBox.Name = "SaveIndividualImagesCheckBox";
-            this.SaveIndividualImagesCheckBox.Size = new System.Drawing.Size(268, 23);
+            this.SaveIndividualImagesCheckBox.Size = new System.Drawing.Size(227, 17);
             this.SaveIndividualImagesCheckBox.TabIndex = 3;
             this.SaveIndividualImagesCheckBox.Text = "Save individual artifact screenshots too";
             this.SaveIndividualImagesCheckBox.UseVisualStyleBackColor = true;
@@ -84,7 +83,7 @@ namespace gi_artifact_capture
             // TimeOutUpDown
             // 
             this.TimeOutUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TimeOutUpDown.Location = new System.Drawing.Point(12, 73);
+            this.TimeOutUpDown.Location = new System.Drawing.Point(10, 58);
             this.TimeOutUpDown.Margin = new System.Windows.Forms.Padding(2);
             this.TimeOutUpDown.Maximum = new decimal(new int[] {
             10000,
@@ -97,7 +96,7 @@ namespace gi_artifact_capture
             0,
             0});
             this.TimeOutUpDown.Name = "TimeOutUpDown";
-            this.TimeOutUpDown.Size = new System.Drawing.Size(59, 26);
+            this.TimeOutUpDown.Size = new System.Drawing.Size(47, 22);
             this.TimeOutUpDown.TabIndex = 5;
             this.TimeOutUpDown.Value = new decimal(new int[] {
             1500,
@@ -108,10 +107,10 @@ namespace gi_artifact_capture
             // TimeOutLabel
             // 
             this.TimeOutLabel.AutoSize = true;
-            this.TimeOutLabel.Location = new System.Drawing.Point(76, 75);
+            this.TimeOutLabel.Location = new System.Drawing.Point(61, 60);
             this.TimeOutLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TimeOutLabel.Name = "TimeOutLabel";
-            this.TimeOutLabel.Size = new System.Drawing.Size(185, 19);
+            this.TimeOutLabel.Size = new System.Drawing.Size(155, 13);
             this.TimeOutLabel.TabIndex = 6;
             this.TimeOutLabel.Text = "ms between each screenshot";
             // 
@@ -120,19 +119,30 @@ namespace gi_artifact_capture
             this.SaveInOwnDirectoryCheckBox.AutoSize = true;
             this.SaveInOwnDirectoryCheckBox.Checked = true;
             this.SaveInOwnDirectoryCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.SaveInOwnDirectoryCheckBox.Location = new System.Drawing.Point(12, 38);
+            this.SaveInOwnDirectoryCheckBox.Location = new System.Drawing.Point(10, 30);
             this.SaveInOwnDirectoryCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.SaveInOwnDirectoryCheckBox.Name = "SaveInOwnDirectoryCheckBox";
-            this.SaveInOwnDirectoryCheckBox.Size = new System.Drawing.Size(260, 23);
+            this.SaveInOwnDirectoryCheckBox.Size = new System.Drawing.Size(219, 17);
             this.SaveInOwnDirectoryCheckBox.TabIndex = 7;
             this.SaveInOwnDirectoryCheckBox.Text = "Save each collage to its own directory\r\n";
             this.SaveInOwnDirectoryCheckBox.UseVisualStyleBackColor = true;
             // 
+            // OpenSaveLocationButton
+            // 
+            this.OpenSaveLocationButton.Location = new System.Drawing.Point(10, 142);
+            this.OpenSaveLocationButton.Name = "OpenSaveLocationButton";
+            this.OpenSaveLocationButton.Size = new System.Drawing.Size(212, 23);
+            this.OpenSaveLocationButton.TabIndex = 8;
+            this.OpenSaveLocationButton.Text = "Open save location";
+            this.OpenSaveLocationButton.UseVisualStyleBackColor = true;
+            this.OpenSaveLocationButton.Click += new System.EventHandler(this.OpenSaveLocationButtonClick);
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(282, 183);
+            this.ClientSize = new System.Drawing.Size(234, 176);
+            this.Controls.Add(this.OpenSaveLocationButton);
             this.Controls.Add(this.SaveInOwnDirectoryCheckBox);
             this.Controls.Add(this.TimeOutLabel);
             this.Controls.Add(this.TimeOutUpDown);
@@ -142,7 +152,6 @@ namespace gi_artifact_capture
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
@@ -163,6 +172,7 @@ namespace gi_artifact_capture
         private System.Windows.Forms.NumericUpDown TimeOutUpDown;
         private System.Windows.Forms.Label TimeOutLabel;
         private System.Windows.Forms.CheckBox SaveInOwnDirectoryCheckBox;
+        private System.Windows.Forms.Button OpenSaveLocationButton;
     }
 }
 

@@ -203,6 +203,11 @@ namespace gi_artifact_capture
             return croppedImage;
         }
 
+        private void OpenSaveLocationButtonClick(object sender, EventArgs e)
+        {
+            Process.Start(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location));
+        }
+
         private void UpdateGameRunningStatus(object sender, EventArgs e)
         {
             genshinProc = Process.GetProcessesByName("genshinimpact").FirstOrDefault();
