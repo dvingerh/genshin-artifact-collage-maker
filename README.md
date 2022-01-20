@@ -2,8 +2,8 @@
 This tool allows you to quickly make an image collage of a character's artifact set in Genshin Impact.
 
 - Quickly generate an artifact set image collage
-- Option to individually save each artifact image
-- Customizable screenshot interval
+- Individually save each artifact image also possible
+- PNG and JPG formats supported
 - Works with different game resolutions, both windowed and fullscreen
 
 ### How to use
