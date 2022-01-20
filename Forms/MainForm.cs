@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -13,6 +14,7 @@ namespace genshin_artifact_collage_maker
     public partial class MainForm : Form
     {
         string savePrefix;
+        string saveExt = "png";
         Process genshinProc;
         IntPtr genshinHandle;
 
@@ -81,41 +83,41 @@ namespace genshin_artifact_collage_maker
                         FlowerBitmap = croppedGameScreenshot;
                         if (SaveIndividualImagesCheckBox.Checked)
                             if (SaveInOwnDirectoryCheckBox.Checked)
-                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_flower.png"));
+                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_flower.{saveExt}"));
                             else
-                                croppedGameScreenshot.Save($"{savePrefix}_flower.png");
+                                croppedGameScreenshot.Save($"{savePrefix}_flower.{saveExt}");
                         break;
                     case 1:
                         PlumeBitmap = croppedGameScreenshot;
                         if (SaveIndividualImagesCheckBox.Checked)
                             if (SaveInOwnDirectoryCheckBox.Checked)
-                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_plume.png"));
+                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_plume.{saveExt}"));
                             else
-                                croppedGameScreenshot.Save($"{savePrefix}_plume.png");
+                                croppedGameScreenshot.Save($"{savePrefix}_plume.{saveExt}");
                         break;
                     case 2:
                         SandsBitmap = croppedGameScreenshot;
                         if (SaveIndividualImagesCheckBox.Checked)
                             if (SaveInOwnDirectoryCheckBox.Checked)
-                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_sands.png"));
+                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_sands.{saveExt}"));
                             else
-                                croppedGameScreenshot.Save($"{savePrefix}_sands.png");
+                                croppedGameScreenshot.Save($"{savePrefix}_sands.{saveExt}");
                         break;
                     case 3:
                         GobletBitmap = croppedGameScreenshot;
                         if (SaveIndividualImagesCheckBox.Checked)
                             if (SaveInOwnDirectoryCheckBox.Checked)
-                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_goblet.png"));
+                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_goblet.{saveExt}"));
                             else
-                                croppedGameScreenshot.Save($"{savePrefix}_goblet.png");
+                                croppedGameScreenshot.Save($"{savePrefix}_goblet.{saveExt}");
                         break;
                     case 4:
                         CircletBitmap = croppedGameScreenshot;
                         if (SaveIndividualImagesCheckBox.Checked)
                             if (SaveInOwnDirectoryCheckBox.Checked)
-                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_circlet.png"));
+                                croppedGameScreenshot.Save(Path.Combine(savePrefix, $"{savePrefix}_circlet.{saveExt}"));
                             else
-                                croppedGameScreenshot.Save($"{savePrefix}_circlet.png");
+                                croppedGameScreenshot.Save($"{savePrefix}_circlet.{saveExt}");
                         break;
                     default:
                         Invoke((MethodInvoker)delegate
@@ -145,9 +147,9 @@ namespace genshin_artifact_collage_maker
                         StartButton.Text = "Start";
                     });
                     if (SaveInOwnDirectoryCheckBox.Checked)
-                        Process.Start(Path.Combine(savePrefix, $"{savePrefix}.png"));
+                        Process.Start(Path.Combine(savePrefix, $"{savePrefix}.{saveExt}"));
                     else
-                        Process.Start($"{savePrefix}.png");
+                        Process.Start($"{savePrefix}.{saveExt}");
                 }
             }
         }
@@ -224,6 +226,14 @@ namespace genshin_artifact_collage_maker
             }
         }
 
+        private void ExtensionCheckedChanged(object sender, EventArgs e)
+        {
+            if (PngRadioButton.Checked)
+                saveExt = "png";
+            if (JpegRadioButton.Checked)
+                saveExt = "jpg";
+        }
+
         // Taken from https://stackoverflow.com/a/56035786
         private Bitmap DrawArtifactImageBorder(Bitmap bmp, int borderSize = 10, bool skipRightBorder = false)
         {
@@ -280,9 +290,21 @@ namespace genshin_artifact_collage_maker
             };
             Bitmap collageImage = MergeArtifactImages(artifactImages);
             if (SaveInOwnDirectoryCheckBox.Checked)
-                collageImage.Save(Path.Combine(savePrefix, $"{savePrefix}.png"));
+                SaveImage(collageImage, Path.Combine(savePrefix, $"{savePrefix}.{saveExt}"));
             else
-                collageImage.Save($"{savePrefix}.png");
+                SaveImage(collageImage, $"{savePrefix}.{saveExt}");
+        }
+
+        private void SaveImage(Bitmap image, string path)
+        {
+            if (PngRadioButton.Checked)
+                image.Save(path);
+            if (JpegRadioButton.Checked)
+            {
+                var encoder = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == ImageFormat.Jpeg.Guid);
+                var encParams = new EncoderParameters() { Param = new[] { new EncoderParameter(Encoder.Quality, long.Parse(JpegQualityNumericUpDown.Value.ToString())) } };
+                image.Save(path, encoder, encParams);
+            }    
         }
     }
 }

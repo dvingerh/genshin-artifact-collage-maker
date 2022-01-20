@@ -39,13 +39,18 @@ namespace genshin_artifact_collage_maker
             this.TimeOutLabel = new System.Windows.Forms.Label();
             this.SaveInOwnDirectoryCheckBox = new System.Windows.Forms.CheckBox();
             this.OpenOutputDirectoryButton = new System.Windows.Forms.Button();
+            this.PngRadioButton = new System.Windows.Forms.RadioButton();
+            this.JpegRadioButton = new System.Windows.Forms.RadioButton();
+            this.JpegQualityLabel = new System.Windows.Forms.Label();
+            this.JpegQualityNumericUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.TimeOutUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.JpegQualityNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // StartButton
             // 
             this.StartButton.Enabled = false;
-            this.StartButton.Location = new System.Drawing.Point(12, 112);
+            this.StartButton.Location = new System.Drawing.Point(12, 147);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(261, 23);
             this.StartButton.TabIndex = 0;
@@ -55,7 +60,7 @@ namespace genshin_artifact_collage_maker
             // 
             // CaptureProgressBar
             // 
-            this.CaptureProgressBar.Location = new System.Drawing.Point(13, 90);
+            this.CaptureProgressBar.Location = new System.Drawing.Point(13, 125);
             this.CaptureProgressBar.Name = "CaptureProgressBar";
             this.CaptureProgressBar.Size = new System.Drawing.Size(259, 16);
             this.CaptureProgressBar.Step = 20;
@@ -83,7 +88,7 @@ namespace genshin_artifact_collage_maker
             // TimeOutUpDown
             // 
             this.TimeOutUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.TimeOutUpDown.Location = new System.Drawing.Point(12, 58);
+            this.TimeOutUpDown.Location = new System.Drawing.Point(12, 93);
             this.TimeOutUpDown.Margin = new System.Windows.Forms.Padding(2);
             this.TimeOutUpDown.Maximum = new decimal(new int[] {
             10000,
@@ -107,7 +112,7 @@ namespace genshin_artifact_collage_maker
             // TimeOutLabel
             // 
             this.TimeOutLabel.AutoSize = true;
-            this.TimeOutLabel.Location = new System.Drawing.Point(61, 60);
+            this.TimeOutLabel.Location = new System.Drawing.Point(61, 95);
             this.TimeOutLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TimeOutLabel.Name = "TimeOutLabel";
             this.TimeOutLabel.Size = new System.Drawing.Size(204, 13);
@@ -129,7 +134,7 @@ namespace genshin_artifact_collage_maker
             // 
             // OpenOutputDirectoryButton
             // 
-            this.OpenOutputDirectoryButton.Location = new System.Drawing.Point(12, 141);
+            this.OpenOutputDirectoryButton.Location = new System.Drawing.Point(12, 176);
             this.OpenOutputDirectoryButton.Name = "OpenOutputDirectoryButton";
             this.OpenOutputDirectoryButton.Size = new System.Drawing.Size(261, 23);
             this.OpenOutputDirectoryButton.TabIndex = 8;
@@ -137,11 +142,69 @@ namespace genshin_artifact_collage_maker
             this.OpenOutputDirectoryButton.UseVisualStyleBackColor = true;
             this.OpenOutputDirectoryButton.Click += new System.EventHandler(this.OpenOutputDirectory);
             // 
+            // PngRadioButton
+            // 
+            this.PngRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.PngRadioButton.AutoSize = true;
+            this.PngRadioButton.Checked = true;
+            this.PngRadioButton.Location = new System.Drawing.Point(12, 65);
+            this.PngRadioButton.Name = "PngRadioButton";
+            this.PngRadioButton.Size = new System.Drawing.Size(39, 23);
+            this.PngRadioButton.TabIndex = 9;
+            this.PngRadioButton.TabStop = true;
+            this.PngRadioButton.Text = "PNG";
+            this.PngRadioButton.UseVisualStyleBackColor = true;
+            this.PngRadioButton.CheckedChanged += new System.EventHandler(this.ExtensionCheckedChanged);
+            // 
+            // JpegRadioButton
+            // 
+            this.JpegRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.JpegRadioButton.AutoSize = true;
+            this.JpegRadioButton.Location = new System.Drawing.Point(57, 65);
+            this.JpegRadioButton.Name = "JpegRadioButton";
+            this.JpegRadioButton.Size = new System.Drawing.Size(41, 23);
+            this.JpegRadioButton.TabIndex = 10;
+            this.JpegRadioButton.Text = "JPEG";
+            this.JpegRadioButton.UseVisualStyleBackColor = true;
+            this.JpegRadioButton.CheckedChanged += new System.EventHandler(this.ExtensionCheckedChanged);
+            // 
+            // JpegQualityLabel
+            // 
+            this.JpegQualityLabel.AutoSize = true;
+            this.JpegQualityLabel.Location = new System.Drawing.Point(98, 70);
+            this.JpegQualityLabel.Name = "JpegQualityLabel";
+            this.JpegQualityLabel.Size = new System.Drawing.Size(106, 13);
+            this.JpegQualityLabel.TabIndex = 11;
+            this.JpegQualityLabel.Text = "JPEG image quality:";
+            // 
+            // JpegQualityNumericUpDown
+            // 
+            this.JpegQualityNumericUpDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.JpegQualityNumericUpDown.Location = new System.Drawing.Point(209, 66);
+            this.JpegQualityNumericUpDown.Margin = new System.Windows.Forms.Padding(2);
+            this.JpegQualityNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.JpegQualityNumericUpDown.Name = "JpegQualityNumericUpDown";
+            this.JpegQualityNumericUpDown.Size = new System.Drawing.Size(56, 22);
+            this.JpegQualityNumericUpDown.TabIndex = 12;
+            this.JpegQualityNumericUpDown.Value = new decimal(new int[] {
+            98,
+            0,
+            0,
+            0});
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(284, 176);
+            this.ClientSize = new System.Drawing.Size(284, 211);
+            this.Controls.Add(this.JpegQualityNumericUpDown);
+            this.Controls.Add(this.JpegQualityLabel);
+            this.Controls.Add(this.JpegRadioButton);
+            this.Controls.Add(this.PngRadioButton);
             this.Controls.Add(this.OpenOutputDirectoryButton);
             this.Controls.Add(this.SaveInOwnDirectoryCheckBox);
             this.Controls.Add(this.TimeOutLabel);
@@ -158,6 +221,7 @@ namespace genshin_artifact_collage_maker
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "genshin-artifact-collage-maker";
             ((System.ComponentModel.ISupportInitialize)(this.TimeOutUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.JpegQualityNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,6 +237,10 @@ namespace genshin_artifact_collage_maker
         private System.Windows.Forms.Label TimeOutLabel;
         private System.Windows.Forms.CheckBox SaveInOwnDirectoryCheckBox;
         private System.Windows.Forms.Button OpenOutputDirectoryButton;
+        private System.Windows.Forms.RadioButton PngRadioButton;
+        private System.Windows.Forms.RadioButton JpegRadioButton;
+        private System.Windows.Forms.Label JpegQualityLabel;
+        private System.Windows.Forms.NumericUpDown JpegQualityNumericUpDown;
     }
 }
 
